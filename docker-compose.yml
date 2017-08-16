@@ -1,0 +1,28 @@
+#
+# Powershell Empire container
+#
+# Written by:
+#   Baptiste MOINE <contact@bmoine.fr>
+#
+
+version: '3'
+networks:
+    front:
+# swarm usage:
+        # driver: overlay
+# non-cluster usage:
+        driver: bridge
+# with custom 'front' bridge configured on host
+        # external: true
+services:
+    empire:
+        build: ${ROOT:-.}
+        image: creased/powershell-empire:latest
+        networks:
+            - front
+        restart: always
+        volumes:
+            - ${ROOT:-.}/data/empire.db:/root/empire/data/empire.db:rw
+            - ${ROOT:-.}/data/empire.pem:/root/empire/data/empire.pem:rw
+        ports:
+            - 8080:8080/tcp
