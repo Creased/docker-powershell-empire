@@ -17,9 +17,9 @@ ENV DEBIAN_FRONTEND=noninteractive \
 # Install dependencies.
 RUN echo "deb http://http.kali.org/kali kali-rolling main contrib non-free\ndeb-src http://http.kali.org/kali kali-rolling main contrib non-free" >/etc/apt/sources.list && \
     apt-get clean && \
-    apt-get -fy update && \
+    apt-get -y update && \
     apt-get -fy dist-upgrade && \
-    apt-get -y install python git python-pip libssl-dev libffi-dev python-dev python-m2crypto swig lsb-release && \
+    apt-get -fy install python git python-pip libssl-dev libffi-dev python-dev python-m2crypto swig lsb-release && \
     pip install pyopenssl
 
 # Install Powershell Empire.
