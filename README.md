@@ -50,16 +50,18 @@ docker-compose exec empire bash
 Reset databases (and certs):
 
 ```bash
+screen -S empire -L -Logfile /root/empire/data/empire.log
 ./setup/reset.sh
+exit
+y
 
 ```
 
-## Usage ##
+## Configuration ##
 
 Start a new empire:
 
 ```bash
-pkill empire
 ./empire
 
 ```
@@ -69,12 +71,19 @@ Setup listener:
 ```bash
 listeners
 uselistener http
-set Host http://vps.bmoine.fr:8080
+set Host http://vps2.bmoine.fr:8080
 set Port 8080
 execute
 launcher powershell
+
+```
+
+Detach from screen using `CTRL`+`A``D`.
+
+Escape from container:
+
+```bash
 exit
-y
 
 ```
 
@@ -86,11 +95,26 @@ docker-compose up -d
 
 ```
 
-Follow logs:
+Display logs:
 
 ```bash
 docker-compose logs -f
 
 ```
 
+Attach to the container:
+
+```bash
+docker-compose exec empire bash
+
+```
+
+Attach to the screen:
+
+```bash
+screen -r empire
+
+```
+
 Voilà!
+

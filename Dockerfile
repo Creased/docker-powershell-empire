@@ -26,6 +26,9 @@ RUN echo "deb http://http.kali.org/kali kali-rolling main contrib non-free\ndeb-
 RUN git clone https://github.com/PowerShellEmpire/Empire.git /root/empire && \
     bash -c "cd /root/empire/setup && ./install.sh"
 
+# Running tools.
+RUN apt-get -fy install screen
+
 # Set workdir.
 WORKDIR /root/empire
 
